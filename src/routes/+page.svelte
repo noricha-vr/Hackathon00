@@ -109,7 +109,7 @@
         } else {
             stop();
             soundManager.play("speedingCar");
-            score = deadline - timer;
+            score = (deadline - timer) * stage * 100 + score;
             deadline = deadline - timer;
             console.log("score", score, "deadline", deadline);
             stage = stage + 1;
@@ -145,8 +145,8 @@
 
 <section class="flex justify-center items-center bg-gray-100 p-5">
     <div class="max-w-lg text-center">
-        <div class="p-5 bg-white rounded-lg shadow-lg mb-10">
-            <div class="text-4xl">第{stage}ステージ</div>
+        <div class="p-5 bg-white rounded-lg shadow-lg mt-5 mb-10">
+            <div class="text-4xl mb-3">第{stage}ステージ</div>
             <!-- <div>デッドライン: {deadline.toFixed(2)}</div> -->
             <div class="text-2xl">スコア: {Number(score.toFixed(0)) * 10}</div>
             <!-- <div>タイマー: {timer.toFixed(2)}</div> -->
