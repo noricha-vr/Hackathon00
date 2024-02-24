@@ -1,0 +1,11 @@
+steps:
+  - name: 'gcr.io/kaniko-project/executor'
+    args:
+      - --destination=asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash:$SHORT_SHA
+      - --destination=asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash:$BRANCH_NAME
+      - --destination=asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash:latest
+      - --cache=true
+      - --cache-ttl=72h
+      - --dockerfile=./Dockerfile
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [ 'run', 'deploy', '--allow-unauthenticated','--memory', '2Gi','--cpu','1','--region', 'asia-northeast1', '--image', 'asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash', '--platform', 'managed', 'ibarakidash' ]

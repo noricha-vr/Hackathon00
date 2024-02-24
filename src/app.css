@@ -1,0 +1,27 @@
+@tailwind base;  
+@tailwind components;  
+@tailwind utilities;  
+
+
+@font-face {
+    font-family: 'Kouzan Gyousho';
+    src: url('/font/KouzanGyoushoOTF.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans JP';
+    /* src: url('/static/font/NotoSansJP-Regular.ttf') format('truetype'); */
+    src: url('/font/NotoSansJP-Regular.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans JP', sans-serif;
+    /* src: url('/static/font/NotoSansJP-Regular.ttf') format('truetype'); */
+    src: url('/font/NotoSansJP-Regular.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
