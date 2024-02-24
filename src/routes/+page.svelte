@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { onMount } from "svelte";
     import { slide } from "svelte/transition";
 
@@ -14,16 +14,25 @@
     let startSound;
     let trafficLight = "red";
     // 画像URLを変数に格納
-    let waitingCarImage =
-        "https://4.bp.blogspot.com/-1vWMf13IxHU/Viiphwt5ZZI/AAAAAAAAz6s/Ta_uhcwxEbI/s800/topview_car.png";
-    let speedingCarImage =
-        "https://2.bp.blogspot.com/-YhE915jVRVM/VS0EnKvcb0I/AAAAAAAAtFM/-NVXLTirJdQ/s800/car_speeding.png";
-    let policeManImage =
-        "https://2.bp.blogspot.com/-fI_FUTkLzfU/WM9X4bUcULI/AAAAAAABCtw/nXaYWFa-KUA3yet-KlfrGPTiPD4BGndLgCLcB/s800/job_police_musen_serious_man.png";
+    let waitingCarImage = "/image/waiting/car.png";
+    let speedingCarImage = "/image/speeding/car.png";
+    let policeManImage = "/image/police/man.png";
+    let accidentImage;
+    const accidentImages = [
+        "/image/accident/deer.png",
+        "/image/accident/old-woman.png",
+    ];
 
     onMount(() => {
         startSound = new Audio("/sound/start.mp3");
+        accidentImage = selectImage(accidentImages);
+        console.log("accidentImage", accidentImage);
     });
+
+    function selectImage(imageList: string[]) {
+        const num = imageList.length % stage;
+        return imageList[num];
+    }
 
     function showAllLogs() {
         console.log(
@@ -80,6 +89,7 @@
     function go() {
         showAllLogs();
         if (timer === 0) {
+            // 信号赤の状態で発信
             gameOver();
         } else {
             stop();
@@ -117,70 +127,81 @@
     }
 </script>
 
-<section class="flex justify-center items-center bg-gray-100 my-10 p-5">
-    <div class="text-4xl max-w-lg text-center">
-        <div>第{stage}ステージ</div>
-        <div>デッドライン: {deadline.toFixed(2)}</div>
-        <div>スコア: {score.toFixed(0) * 10}</div>
-        <div>タイマー: {timer.toFixed(2)}</div>
-        <div>信号: {trafficLight}</div>
-        <img
-            class="w-1/2 mx-auto text-center"
-            alt="信号機"
-            src={`/image/${trafficLight}.png`}
-            in:slide={{ x: 200, duration: 500 }}
-        />
-        {#if !isGameOver}
-            {#if !isRunning}
-                <button
-                    class="bg-blue-500 text-white py-2 px-4 rounded"
-                    on:click={startGame}>開始</button
-                >
-                {#if stage === 1}
-                    <img
-                        class="w-1/2 mx-auto text-center"
-                        alt="待機中の車"
-                        src={waitingCarImage}
-                        in:slide={{ x: 200, duration: 500 }}
-                    />
+<section class="flex justify-center items-center bg-gray-100 p-5">
+    <div class="max-w-lg text-center">
+        <div class="p-5 bg-white rounded-lg shadow-lg mb-10">
+            <div class="text-4xl">第{stage}ステージ</div>
+            <!-- <div>デッドライン: {deadline.toFixed(2)}</div> -->
+            <div class="text-2xl">スコア: {Number(score.toFixed(0)) * 10}</div>
+            <!-- <div>タイマー: {timer.toFixed(2)}</div> -->
+        </div>
+        <div class="text-2xl">
+            <img
+                class="w-1/2 mx-auto text-center mb-5"
+                alt="信号機"
+                src={`/image/traffic-light/${trafficLight}.png`}
+                transition:slide={{ duration: 500 }}
+            />
+            {#if !isGameOver}
+                {#if !isRunning}
+                    <button
+                        class="bg-blue-500 text-white py-2 px-4 rounded"
+                        on:click={startGame}>開始</button
+                    >
+                    {#if stage === 1}
+                        <img
+                            class="w-1/2 mx-auto text-center"
+                            alt="待機中の車"
+                            src={waitingCarImage}
+                        />
+                    {:else}
+                        <img
+                            class="mx-auto"
+                            alt="茨城ダッシュ"
+                            src={speedingCarImage}
+                        />
+                    {/if}
                 {:else}
+                    <button
+                        class="bg-blue-500 text-white py-2 px-4 rounded"
+                        on:click={go}>ダッシュ！</button
+                    >
                     <img
                         class="w-1/2 mx-auto"
-                        alt="通過"
-                        src={speedingCarImage}
-                        in:slide={{ x: 200, duration: 500 }}
+                        alt="待機"
+                        src={waitingCarImage}
                     />
                 {/if}
             {:else}
+                <div class="text-6xl font-bold text-red-500">
+                    ゲームオーバー
+                    {#if trafficLight === "red"}
+                        <!-- おまわりさんが出てくる -->
+                        <img
+                            class="w-1/3 mx-auto"
+                            src={policeManImage}
+                            alt="おまわりさん"
+                        />
+                    {:else}
+                        <!-- 衝突事故 -->
+                        <img
+                            class="w-1/2 mx-auto"
+                            src={accidentImage}
+                            alt="衝突事故"
+                        />
+                    {/if}
+                </div>
                 <button
                     class="bg-blue-500 text-white py-2 px-4 rounded"
-                    on:click={go}>ダッシュ！</button
+                    on:click={startGame}>リトライ</button
                 >
-                <img
-                    class="w-1/2 mx-auto"
-                    alt="待機中の車"
-                    src={waitingCarImage}
-                />
             {/if}
-        {:else}
-            <button
-                class="bg-blue-500 text-white py-2 px-4 rounded"
-                on:click={startGame}>リトライ</button
-            >
-            <div>
-                ゲームオーバー
-                <img
-                    class="w-1/2 mx-auto"
-                    src={policeManImage}
-                    alt="おまわりさん"
-                />
-            </div>
-        {/if}
+        </div>
     </div>
 </section>
 <section class="flex justify-center items-center my-10 p-5">
     <div>
-        <h2 class="text-2xl">コピーライト</h2>
+        <h2 class="text-2xl">クレジット</h2>
         <ul class="list-disc">
             <li class="list-inside">
                 <a
