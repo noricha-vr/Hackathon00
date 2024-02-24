@@ -34,20 +34,7 @@
         return imageList[num];
     }
 
-    function showAllLogs() {
-        console.log(
-            "isRunning:",
-            isRunning,
-            "isGameOver:",
-            isGameOver,
-            "timer:",
-            timer,
-            "score:",
-            score,
-        );
-    }
     async function startGame() {
-        showAllLogs();
         if (isRunning) return;
         if (isGameOver) {
             resetGame();
@@ -87,7 +74,6 @@
     }
 
     function go() {
-        showAllLogs();
         if (timer === 0) {
             // 信号赤の状態で発信
             gameOver();
