@@ -9,7 +9,7 @@
 </svelte:head>
 
 <div class="min-h-screen flex flex-col min-w-screen-xs">
-    <nav class="bg-orange-800">
+    <nav class="bg-blue-900">
         <div class="mx-auto max-w-7xl px-2 py-2 sm:py-3 sm:px-6 lg:px-8">
             <div class="relative flex h-10 items-center justify-between">
                 <div
