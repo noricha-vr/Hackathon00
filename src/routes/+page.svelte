@@ -11,27 +11,56 @@
     let intervalId;
     let waitTimeIntervalId;
     let stage = 1;
-    let startSound;
     let trafficLight = "red";
     // 画像URLを変数に格納
-    let waitingCarImage = "/image/waiting/car.png";
+    let idlingCarImage = "/image/idling/car.png";
     let speedingCarImage = "/image/speeding/car.png";
-    let policeManImage = "/image/police/man.png";
-    let accidentImage;
-    const accidentImages = [
-        "/image/accident/deer.png",
-        "/image/accident/old-woman.png",
-    ];
+    const accidentImages = ["/image/accident/deer.png"];
+    const carAccidentSounds = ["/sound/accident/deer.mp3"];
+    const policeImages = ["/image/police/man.png", "/image/police/car.png"];
+    const policeSounds = ["/sound/police/man.mp3", "/sound/police/car.mp3"];
+    let policeImage = policeImages[0];
+    let accidentImage = accidentImages[0];
+    let soundManager: SoundManager;
+
+    class SoundManager {
+        player: HTMLAudioElement;
+        idlingCar = new Audio("/sound/idling/car.mp3");
+        police = new Audio(selectOne(policeSounds));
+        carAccident = new Audio(selectOne(carAccidentSounds));
+        speedingCar = new Audio("/sound/speeding/car.mp3");
+
+        update() {
+            this.police = new Audio(selectOne(policeSounds));
+            this.carAccident = new Audio(selectOne(carAccidentSounds));
+            console.log(
+                `stage: ${stage}, police: ${this.police.src}, carAccident: ${this.carAccident.src}`,
+            );
+        }
+        play(soundName: keyof SoundManager) {
+            if (this.player && !this.player.paused) {
+                this.player.pause();
+                this.player.currentTime = 0;
+            }
+            this.player = this[soundName] as HTMLAudioElement;
+            if (this.player instanceof Audio) {
+                this.player.play();
+            }
+        }
+    }
 
     onMount(() => {
-        startSound = new Audio("/sound/start.mp3");
-        accidentImage = selectImage(accidentImages);
-        console.log("accidentImage", accidentImage);
+        soundManager = new SoundManager();
     });
+    $: if (stage > 1) {
+        policeImage = selectOne(policeImages);
+        accidentImage = selectOne(accidentImages);
+        soundManager.update();
+    }
 
-    function selectImage(imageList: string[]) {
-        const num = imageList.length % stage;
-        return imageList[num];
+    function selectOne(someList: string[]) {
+        const num = (stage - 1) % someList.length;
+        return someList[num];
     }
 
     async function startGame() {
@@ -40,9 +69,7 @@
             resetGame();
         } else {
             trafficLight = "red";
-            if (stage === 1) {
-                // startSound.play();
-            }
+            soundManager.play("idlingCar");
             if (intervalId) {
                 clearInterval(intervalId);
             }
@@ -68,6 +95,7 @@
                 timer += 0.01;
             } else {
                 // デッドラインに達した場合、タイマーを停止しゲームオーバー状態にする
+                soundManager.play("carAccident");
                 gameOver();
             }
         }, 10); // 10ミリ秒ごとにタイマーを更新
@@ -77,8 +105,10 @@
         if (timer === 0) {
             // 信号赤の状態で発信
             gameOver();
+            soundManager.play("police");
         } else {
             stop();
+            soundManager.play("speedingCar");
             score = deadline - timer;
             deadline = deadline - timer;
             console.log("score", score, "deadline", deadline);
@@ -138,7 +168,7 @@
                         <img
                             class="w-1/2 mx-auto text-center"
                             alt="待機中の車"
-                            src={waitingCarImage}
+                            src={idlingCarImage}
                         />
                     {:else}
                         <img
@@ -155,7 +185,7 @@
                     <img
                         class="w-1/2 mx-auto"
                         alt="待機"
-                        src={waitingCarImage}
+                        src={idlingCarImage}
                     />
                 {/if}
             {:else}
@@ -165,7 +195,7 @@
                         <!-- おまわりさんが出てくる -->
                         <img
                             class="w-1/3 mx-auto"
-                            src={policeManImage}
+                            src={policeImage}
                             alt="おまわりさん"
                         />
                     {:else}
