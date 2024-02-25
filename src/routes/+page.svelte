@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { slide } from "svelte/transition";
 
     let timer = 0;
     const initialDeadline = 1.3;
@@ -189,7 +188,6 @@
                     class="w-1/2 mx-auto text-center mb-5"
                     alt="信号機"
                     src={`/image/traffic-light/${trafficLight}.png`}
-                    transition:slide={{ duration: 500 }}
                 />
                 {#if !isGameOver}
                     {#if !isRunning}
