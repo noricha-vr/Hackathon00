@@ -8,4 +8,4 @@ steps:
       - --cache-ttl=72h
       - --dockerfile=./Dockerfile
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'run', 'deploy', '--allow-unauthenticated','--memory', '2Gi','--cpu','1','--region', 'asia-northeast1', '--image', 'asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash', '--platform', 'managed', 'ibarakidash' ]
+    args: [ 'run', 'deploy', '--allow-unauthenticated','--memory', '2Gi','--cpu','1','--region', 'asia-northeast1', '--image', 'asia-northeast1-docker.pkg.dev/kojin-works/docker/ibarakidash', '--platform', 'managed', 'ibarakidash' ]
