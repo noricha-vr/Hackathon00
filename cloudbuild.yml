@@ -1,9 +1,9 @@
 steps:
   - name: 'gcr.io/kaniko-project/executor'
     args:
-      - --destination=asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash:$SHORT_SHA
-      - --destination=asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash:$BRANCH_NAME
-      - --destination=asia-northeast1-docker.pkg.dev/kojin-works/build/ibarakidash:latest
+      - --destination=バーチャルなasia-northeast1-docker.pkg.dev/kojin-works/docker/ibarakidash:$SHORT_SHA
+      - --destination=バーチャルなasia-northeast1-docker.pkg.dev/kojin-works/docker/ibarakidash:$BRANCH_NAME
+      - --destination=バーチャルなasia-northeast1-docker.pkg.dev/kojin-works/docker/ibarakidash:latest
       - --cache=true
       - --cache-ttl=72h
       - --dockerfile=./Dockerfile
