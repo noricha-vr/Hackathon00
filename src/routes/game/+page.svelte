@@ -167,6 +167,9 @@
             <div class="text-xl mb-3 mt-3 font-bold">遊び方</div>
             <ul class="list-inside space-y-2">
                 <li>
+                    <span class="font-bold">「開始」</span> ボタンでゲームスタート！
+                </li>
+                <li>
                     <span class="text-blue-500 font-bold">青信号</span> の時にダッシュボタンを押してスコアを稼ごう！
                 </li>
                 <li>

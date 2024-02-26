@@ -1,83 +1,91 @@
 <div
-    class="flex flex-col items-center justify-center py-8 lg:py-20 bg-cover bg-center"
-    style="background-image: url('https://media.istockphoto.com/id/1256582827/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E7%94%B0%E3%82%93%E3%81%BC.jpg?s=1024x1024&w=is&k=20&c=vqtdpkPp0rbvCwSdGDf6oPHGm52JA7USp1NHiV3jOag=');"
+    class="flex flex-col items-center justify-center py-8 lg:py-16 bg-cover bg-center"
+    style="background-image: url('/image/lp/sakura.jpg');"
 >
     <div class="bg-gray-100 bg-opacity-50 w-full py-5">
         <h1 class="text-5xl font-bold leading-tight text-center">
             バーチャルな茨城で<br />茨城ダッシュ！
         </h1>
-        <p class="mt-6 text-lg text-center text-gray-700">
-            We are a creative studio focusing on culture, luxury, editorial &
-            art.<br />
-            Somewhere between sophistication and simplicity. This is where we sit
-            down,<br />
-            grab a cup of coffee and dial in the details. Understanding the task
-            at hand<br />
-            and ironing out the wrinkles is key.
-        </p>
-    </div>
-</div>
-
-<div class="bg-white p-10">
-    <h1 class="text-4xl font-bold leading-tight text-center">
-        茨城ダッシュとは
-    </h1>
-    <p class="mt-6 text-lg text-center text-gray-700">
-        茨城県民にはお馴染み、信号が青に変わる瞬間に直進車を抜いて右折する運転技術です。
-    </p>
-</div>
-
-<div class="bg-white p-10">
-    <h1 class="text-4xl font-bold leading-tight text-center">
-        茨城ダッシュとは
-    </h1>
-    <p class="mt-6 text-lg text-center text-gray-700">
-        茨城県民にはお馴染み、信号が青に変わる瞬間に直進車を抜いて右折する運転技術です。
-    </p>
-</div>
-
-<div class="bg-white p-10">
-    <h1 class="text-4xl font-bold leading-tight text-center">
-        茨城ダッシュとは
-    </h1>
-    <p class="mt-6 text-lg text-center text-gray-700">
-        茨城県民にはお馴染み、信号が青に変わる瞬間に直進車を抜いて右折する運転技術です。
-    </p>
-</div>
-
-<div class="container mx-auto px-6 p-5">
-    <div class="flex flex-wrap items-center">
-        <!-- Text Content -->
-        <div class="w-full md:w-1/2">
-            <h2 class="text-4xl font-semibold">
-                Optimize and scale, easy to start
-            </h2>
-            <p class="text-gray-600 mt-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
+        <div class="flex flex-col items-center justify-center ml-10 gap-4">
+            <p class="mt-6 text-lg font-medium">
+                リアルでは味わえないそのスリルをバーチャルに再現した茨城ダッシュ！<br
+                />
+                さあ、あなたも茨城ダッシュを体験してみませんか？
             </p>
-            <a
-                href="#"
-                class="mt-8 bg-blue-600 text-white px-5 py-3 inline-block rounded"
-                >Learn more →</a
-            >
         </div>
-        <!-- Image Content -->
-        <div class="w-full md:w-1/2 flex justify-center">
-            <img
-                src="image/accident/old-woman.png"
-                alt="People working"
-                class=""
-            />
-        </div>
+    </div>
+
+    <div class="flex items-center justify-center mt-8">
+        <a
+            href="/game"
+            class="bg-blue-700 text-white px-5 py-3 inline-block rounded hover:bg-blue-800 shadow-lg"
+        >
+            プレイする
+        </a>
     </div>
 </div>
 
-メインビジュアル
+<div class="bg-white p-10">
+    <h1 class="text-4xl font-bold leading-tight text-center">
+        茨城ダッシュとは
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        茨城県民にはお馴染み、交差点で信号が青に変わる瞬間に<br />
+        対向直進車の前を横切り、右折する運転技術です
+    </p>
+</div>
+
+<div class="bg-gray-100 p-10">
+    <h1 class="text-3xl font-bold leading-tight text-center">
+        茨城ダッシュは違法ですか？
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        はい、道路交通法第24条第1項第1号に違反する行為です。
+    </p>
+</div>
+
+<div class="bg-white p-10">
+    <h1 class="text-3xl font-bold leading-tight text-center">
+        茨城ダッシュのスリルを味わいたいのですが…
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        <span class="font-bold">お任せください！</span
+        >それを再現したのが茨城ダッシュ！です
+    </p>
+</div>
+
+<div class="bg-gray-100 p-10">
+    <h1 class="text-3xl font-bold leading-tight text-center">
+        このゲームの遊び方
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        「開始」ボタンを押してゲームを開始<br />
+        信号が青に変わる瞬間に「ダッシュ！」します
+        <br />
+        ダッシュのタイミングが良ければ、スコアがアップ
+        <br />
+        スコアを稼いでランキング上位を目指しましょう！
+    </p>
+</div>
+<div class="bg-white p-10">
+    <h1 class="text-3xl font-bold leading-tight text-center">
+        今すぐ始めよう！
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        さあ、あなたも私たちのバーチャル茨城で<br />
+        安全第一の「茨城ダッシュ」を体験してみませんか？
+    </p>
+    <div class="flex justify-center mt-10 font-bold">
+        <a
+            href="/game"
+            class="bg-blue-700 text-white px-5 py-3 inline-block rounded hover:bg-blue-800 shadow-lg"
+        >
+            プレイする
+        </a>
+    </div>
+</div>
+
+<!-- メインビジュアル
 茨城の風景(桜並木、水戸城、ひたち海浜公園等)をバックに、主人公キャラクターがダッシュするイメージビジュアル
 ゲームコンセプト バーチャルな茨城で茨城でダッシュ!
 城の街を舞台に信号に合わせてタイミングよくダッシュするゲームの概要説明
@@ -100,3 +108,4 @@
 こういった蛇行運転は茨城県民の隠し味とも言える伝統文化。対向車の動きを読んで一瞬の隙をついて駆け抜ける姿にはスリルさえ感じられるはず。水戸藩主徳川光圀公の棒引き運動がルーツではないかと言われています。
 ただし茨城県警は厳しく取り締まっているので、決してマネしないでくださいね。茨城ダッシュはあくまでもテレビやゲームの中で楽しめるお遊び。ゲームで茨城ダッシュ体験を満喫しましょう!
 いかがでしょうか。茨城ならではの運転テクニックをユーモラスに解説することで、地域色を感じてもらいつつ安全運転を呼びかけたつもりです。
+さあ、あなたも私たちのバーチャル茨城で、安全第一の「茨城ダッシュ」を体験してみませんか？ -->
