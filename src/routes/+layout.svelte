@@ -3,11 +3,7 @@
     import Footer from "$lib/components/Footer.svelte";
 </script>
 
-<svelte:head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-</svelte:head>
-
+<svelte:head></svelte:head>
 <div class="min-h-screen flex flex-col min-w-screen-xs">
     <nav class="bg-blue-900">
         <div class="mx-auto max-w-7xl px-2 py-2 sm:py-3 sm:px-6 lg:px-8">

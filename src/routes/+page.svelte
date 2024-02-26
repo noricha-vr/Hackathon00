@@ -1,6 +1,10 @@
 <script lang="ts">
+    import MetaTags from "$lib/components/MetaTags.svelte";
     import { onMount } from "svelte";
-
+    const title = "バーチャルな茨城で茨城ダッシュ！";
+    const description =
+        "茨城を舞台にしたバーチャルなゲーム体験を提供するこのサイトでは、プレイヤーはバーチャルな茨城で茨城ダッシュを楽しむことができます。信号の色に応じてタイミング良くダッシュボタンを押し、スコアを稼ぎながらステージを進めていくことが目的です。赤信号でダッシュボタンを押すとゲームオーバーになるため、注意が必要です。最高スコアを目指して、茨城ダッシュのスリルを楽しもう！";
+    const thumbnail = "/image/ogp.png";
     let timer = 0;
     const initialDeadline = 1.3;
     let deadline = initialDeadline;
@@ -154,6 +158,8 @@
         isRunning = false;
     }
 </script>
+
+<MetaTags {title} {description} {thumbnail}></MetaTags>
 
 <section class="flex justify-center items-center bg-gray-100 p-5">
     <div class="max-w-lg text-center">
