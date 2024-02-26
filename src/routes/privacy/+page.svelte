@@ -1,7 +1,7 @@
 <div class="mx-auto p-5 text-gray-900">
     <section>
         <div class="my-14 text-center">
-            <h1 class="text-3xl mb-3">プライバシーポリシー</h1>
+            <h1 class="text-3xl mb-3 font-bold">プライバシーポリシー</h1>
         </div>
         <div
             class="bg-light border py-10 px-10 max-w-4xl mx-auto rounded rounded-md shadow"

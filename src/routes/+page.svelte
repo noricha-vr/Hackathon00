@@ -1,271 +1,102 @@
-<script lang="ts">
-    import MetaTags from "$lib/components/MetaTags.svelte";
-    import { onMount } from "svelte";
-    const title = "バーチャルな茨城で茨城ダッシュ！";
-    const description =
-        "茨城を舞台にしたバーチャルなゲーム体験を提供するこのサイトでは、プレイヤーはバーチャルな茨城で茨城ダッシュを楽しむことができます。信号の色に応じてタイミング良くダッシュボタンを押し、スコアを稼ぎながらステージを進めていくことが目的です。赤信号でダッシュボタンを押すとゲームオーバーになるため、注意が必要です。最高スコアを目指して、茨城ダッシュのスリルを楽しもう！";
-    const thumbnail = "/image/ogp.png";
-    let timer = 0;
-    const initialDeadline = 1.3;
-    let deadline = initialDeadline;
-    let score = 0;
-    let maxScore = 0;
-    let isGameOver = false;
-    let isRunning = false;
-    let intervalId;
-    let waitTimeIntervalId;
-    let stage = 1;
-    let trafficLight = "red";
-    // 画像URLを変数に格納
-    let idlingCarImage = "/image/idling/car.png";
-    let speedingCarImage = "/image/speeding/car.png";
-    const accidentImages = ["/image/accident/deer.png"];
-    const carAccidentSounds = ["/sound/accident/deer.mp3"];
-    const policeImages = ["/image/police/man.png", "/image/police/car.png"];
-    const policeSounds = ["/sound/police/man.mp3", "/sound/police/car.mp3"];
-    let policeImage = policeImages[0];
-    let accidentImage = accidentImages[0];
-    let soundManager: SoundManager;
+<div
+    class="flex flex-col items-center justify-center py-8 lg:py-20 bg-cover bg-center"
+    style="background-image: url('https://media.istockphoto.com/id/1256582827/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E7%94%B0%E3%82%93%E3%81%BC.jpg?s=1024x1024&w=is&k=20&c=vqtdpkPp0rbvCwSdGDf6oPHGm52JA7USp1NHiV3jOag=');"
+>
+    <div class="bg-gray-100 bg-opacity-50 w-full py-5">
+        <h1 class="text-5xl font-bold leading-tight text-center">
+            バーチャルな茨城で<br />茨城ダッシュ！
+        </h1>
+        <p class="mt-6 text-lg text-center text-gray-700">
+            We are a creative studio focusing on culture, luxury, editorial &
+            art.<br />
+            Somewhere between sophistication and simplicity. This is where we sit
+            down,<br />
+            grab a cup of coffee and dial in the details. Understanding the task
+            at hand<br />
+            and ironing out the wrinkles is key.
+        </p>
+    </div>
+</div>
 
-    class SoundManager {
-        player: HTMLAudioElement;
-        idlingCar = new Audio("/sound/idling/car.mp3");
-        police = new Audio(selectOne(policeSounds));
-        carAccident = new Audio(selectOne(carAccidentSounds));
-        speedingCar = new Audio("/sound/speeding/car.mp3");
+<div class="bg-white p-10">
+    <h1 class="text-4xl font-bold leading-tight text-center">
+        茨城ダッシュとは
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        茨城県民にはお馴染み、信号が青に変わる瞬間に直進車を抜いて右折する運転技術です。
+    </p>
+</div>
 
-        update() {
-            this.police = new Audio(selectOne(policeSounds));
-            this.carAccident = new Audio(selectOne(carAccidentSounds));
-            console.log(
-                `stage: ${stage}, police: ${this.police.src}, carAccident: ${this.carAccident.src}`,
-            );
-        }
-        play(soundName: keyof SoundManager) {
-            if (this.player && !this.player.paused) {
-                this.player.pause();
-                this.player.currentTime = 0;
-            }
-            this.player = this[soundName] as HTMLAudioElement;
-            if (this.player instanceof Audio) {
-                this.player.play();
-            }
-        }
-    }
+<div class="bg-white p-10">
+    <h1 class="text-4xl font-bold leading-tight text-center">
+        茨城ダッシュとは
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        茨城県民にはお馴染み、信号が青に変わる瞬間に直進車を抜いて右折する運転技術です。
+    </p>
+</div>
 
-    onMount(() => {
-        soundManager = new SoundManager();
-        // localStorageから最高スコアを読み込む
-        const storedMaxScore = localStorage.getItem("maxScore");
-        console.log("storedMaxScore", storedMaxScore);
-        if (storedMaxScore) {
-            maxScore = Number(storedMaxScore);
-        }
-    });
-    $: if (stage > 1) {
-        policeImage = selectOne(policeImages);
-        accidentImage = selectOne(accidentImages);
-        soundManager.update();
-    }
+<div class="bg-white p-10">
+    <h1 class="text-4xl font-bold leading-tight text-center">
+        茨城ダッシュとは
+    </h1>
+    <p class="mt-6 text-lg text-center text-gray-700">
+        茨城県民にはお馴染み、信号が青に変わる瞬間に直進車を抜いて右折する運転技術です。
+    </p>
+</div>
 
-    function selectOne(someList: string[]) {
-        const num = (stage - 1) % someList.length;
-        return someList[num];
-    }
-
-    async function startGame() {
-        if (isRunning) return;
-        if (isGameOver) {
-            resetGame();
-        } else {
-            trafficLight = "red";
-            soundManager.play("idlingCar");
-            if (intervalId) {
-                clearInterval(intervalId);
-            }
-            if (waitTimeIntervalId) {
-                clearInterval(waitTimeIntervalId);
-            }
-            isRunning = true;
-            timer = 0;
-        }
-        const waitTime = Math.random() * 2000 + 1000;
-        // ゲーム開始前の待機時間を設定
-        await new Promise(
-            (resolve) => (waitTimeIntervalId = setTimeout(resolve, waitTime)),
-        ); // ゲーム開始前の待機時間
-        if (!isRunning) return;
-        // タイマーを開始し、一定間隔で時間を更新
-        intervalId = setInterval(() => {
-            if (!isRunning) {
-                console.log("isRunning", isRunning);
-            } else if (timer <= deadline) {
-                // デッドラインに達していない場合、タイマーを更新
-                trafficLight = "blue";
-                timer += 0.01;
-            } else {
-                // デッドラインに達した場合、タイマーを停止しゲームオーバー状態にする
-                soundManager.play("carAccident");
-                gameOver();
-            }
-        }, 10); // 10ミリ秒ごとにタイマーを更新
-    }
-
-    function go() {
-        if (timer === 0) {
-            // 信号赤の状態で発信
-            gameOver();
-            soundManager.play("police");
-        } else {
-            stop();
-            soundManager.play("speedingCar");
-            score = (deadline - timer) * stage * 100 + score;
-            deadline = deadline - timer;
-            console.log("score", score, "deadline", deadline);
-            stage = stage + 1;
-        }
-    }
-    function stop() {
-        isRunning = false;
-        // タイマーと待機時間のインターバルをクリア
-        clearInterval(intervalId);
-        clearInterval(waitTimeIntervalId);
-        // intervalIdとwaitTimeIntervalIdをnullに設定して、参照をクリア
-        intervalId = null;
-        waitTimeIntervalId = null;
-    }
-
-    function gameOver() {
-        isGameOver = true;
-        isRunning = false;
-        clearInterval(intervalId);
-        clearInterval(waitTimeIntervalId);
-        // 現在のスコアが最高スコアより高ければ更新
-        if (score > maxScore) {
-            maxScore = score;
-            // 更新した最高スコアをlocalStorageに保存
-            localStorage.setItem("maxScore", maxScore.toString());
-        }
-    }
-
-    function resetGame() {
-        timer = 0;
-        score = 0;
-        stage = 1;
-        deadline = initialDeadline;
-        isGameOver = false;
-        intervalId = null;
-        isRunning = false;
-    }
-</script>
-
-<MetaTags {title} {description} {thumbnail}></MetaTags>
-
-<section class="flex justify-center items-center bg-gray-100 p-5">
-    <div class="max-w-lg text-center">
-        <div class="mt-5 p-2 pb-5 bg-blue-100 rounded-lg shadow-md mb-6">
-            <div class="text-xl mb-3 mt-3 font-bold">遊び方</div>
-            <ul class="list-inside space-y-2">
-                <li>
-                    <span class="text-blue-500 font-bold">青信号</span> の時にダッシュボタンを押してスコアを稼ごう！
-                </li>
-                <li>
-                    <span class="text-red-500 font-bold">赤信号</span> の時にダッシュボタンを押すとゲームオーバー！
-                </li>
-                <li>ステージが上がると難易度が上がって、スコアも高くなるよ</li>
-            </ul>
+<div class="container mx-auto px-6 p-5">
+    <div class="flex flex-wrap items-center">
+        <!-- Text Content -->
+        <div class="w-full md:w-1/2">
+            <h2 class="text-4xl font-semibold">
+                Optimize and scale, easy to start
+            </h2>
+            <p class="text-gray-600 mt-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur.
+            </p>
+            <a
+                href="#"
+                class="mt-8 bg-blue-600 text-white px-5 py-3 inline-block rounded"
+                >Learn more →</a
+            >
         </div>
-
-        <div class="p-5 bg-white rounded-lg shadow-lg mt-5 mb-10">
-            <div class="text-left mb-3 p-3">
-                <div>
-                    最高スコア: {Number(maxScore.toFixed(0)) * 10}
-                </div>
-                <div class="">
-                    スコア: {Number(score.toFixed(0)) * 10}
-                </div>
-                <div class="mb-3">タイマー: {timer.toFixed(2)}</div>
-            </div>
-            <div class="text-4xl mb-3">第{stage}ステージ</div>
-            <!-- <div>デッドライン: {deadline.toFixed(2)}</div> -->
-
-            <div class="text-2xl">
-                <img
-                    class="w-1/2 mx-auto text-center mb-5"
-                    alt="信号機"
-                    src={`/image/traffic-light/${trafficLight}.png`}
-                />
-                {#if !isGameOver}
-                    {#if !isRunning}
-                        <button
-                            class="bg-blue-500 text-white py-2 px-4 rounded"
-                            on:click={startGame}>開始</button
-                        >
-                        {#if stage === 1}
-                            <img
-                                class="w-1/2 mx-auto text-center"
-                                alt="待機中の車"
-                                src={idlingCarImage}
-                            />
-                        {:else}
-                            <img
-                                class="mx-auto"
-                                alt="茨城ダッシュ"
-                                src={speedingCarImage}
-                            />
-                        {/if}
-                    {:else}
-                        <button
-                            class="bg-blue-500 text-white py-2 px-4 rounded"
-                            on:click={go}>ダッシュ！</button
-                        >
-                        <img
-                            class="w-1/2 mx-auto"
-                            alt="待機"
-                            src={idlingCarImage}
-                        />
-                    {/if}
-                {:else}
-                    <div class="text-6xl font-bold text-red-500">
-                        ゲームオーバー
-                        {#if trafficLight === "red"}
-                            <!-- おまわりさんが出てくる -->
-                            <img
-                                class="w-1/3 mx-auto"
-                                src={policeImage}
-                                alt="おまわりさん"
-                            />
-                        {:else}
-                            <!-- 衝突事故 -->
-                            <img
-                                class="w-1/2 mx-auto"
-                                src={accidentImage}
-                                alt="衝突事故"
-                            />
-                        {/if}
-                    </div>
-                    <button
-                        class="bg-blue-500 text-white py-2 px-4 rounded"
-                        on:click={startGame}>リトライ</button
-                    >
-                {/if}
-            </div>
+        <!-- Image Content -->
+        <div class="w-full md:w-1/2 flex justify-center">
+            <img
+                src="image/accident/old-woman.png"
+                alt="People working"
+                class=""
+            />
         </div>
     </div>
-</section>
-<section class="flex justify-center items-center my-10 p-5">
-    <div>
-        <h2 class="text-2xl">クレジット</h2>
-        <ul class="list-disc">
-            <li class="list-inside">
-                <a
-                    href="https://soundeffect-lab.info/sound/machine/machine2.html"
-                    >効果音ラボ</a
-                >
-            </li>
-            <li class="list-inside">
-                <a href="https://www.irasutoya.com/">イラスト屋</a>
-            </li>
-        </ul>
-    </div>
-</section>
+</div>
+
+メインビジュアル
+茨城の風景(桜並木、水戸城、ひたち海浜公園等)をバックに、主人公キャラクターがダッシュするイメージビジュアル
+ゲームコンセプト バーチャルな茨城で茨城でダッシュ!
+城の街を舞台に信号に合わせてタイミングよくダッシュするゲームの概要説明
+ゲームの魅力 茨城の実際の街並みを再現したステージ
+色とりどりのアイテムを集めてキャラクターをカスタマイズ
+高スコアを目指して友達と競い合うランキング機能 操作説明
+直感的なワンタッチ操作で誰でも簡単にプレイ可能
+画面タップでダッシュ、スワイプで進路変更等の説明 プレイ体験
+デモプレイ動画やスクリーンショットで実際のゲーム内容を紹介 こんな方にオススメ
+茨城県在住の方 茨城にゆかりのある方 リズムアクションゲームが好きな方 等 ###
+茨城ダッシュとは？
+茨城ダッシュ、それは茨城県発祥（？）の大胆不敵な運転技術であり、交通ルールのグレーゾーンを華麗に舞うダンスのようなもの。赤信号が青に変わるその瞬間、まるでスプリンターがスタートラインから飛び出すかのように、車は右折を決行します。しかし、ここでの大技はただの右折ではありません。なんと、対向直進車をも巧みにかわし、交差点をショートカット！まるで「茨城の忍者」が影から光へと駆け抜けるかのよう。
+ただし、このスリリングな「茨城ダッシュ」、実は交通違反なんです。茨城県警察もこの大胆な挑戦には頭を悩ませており、白バイや覆面パトカーを駆使した取り締まりを強化中。だから、この「茨城ダッシュ」、実際の道路では絶対にNG。安全運転が何よりも大切なのです。
+しかし、心配無用！私たちが用意したのは、実際の道路ではなく、バーチャル世界での「茨城ダッシュ」体験。ここでは、あなたも茨城の忍者になりきり、スコアを競い合うことができます。もちろん、全ては安全な環境の中で、交通ルールを守りながら楽しむことができますよ。
+さあ、あなたも私たちのバーチャル茨城で、安全第一の「茨城ダッシュ」を体験してみませんか？【14†source】【13†source】。
+「茨城ダッシュ」とは、信号が青に変わる瞬間に交差点を右折する技。面白く聞こえるかもしれませんが、実は交通違反なんです。安全運転を心がけましょう【14†source】【13†source】。
+茨城ダッシュとは何ぞや?
+茨城県民なら誰もが一度は経験したことがある「アレ」です。信号待ちで右折レーンに並んでいると、いきなり対向車線を駆け抜ける車が!
+「あ、茨城ダッシュだ」とビックリすることありますよね。
+こういった蛇行運転は茨城県民の隠し味とも言える伝統文化。対向車の動きを読んで一瞬の隙をついて駆け抜ける姿にはスリルさえ感じられるはず。水戸藩主徳川光圀公の棒引き運動がルーツではないかと言われています。
+ただし茨城県警は厳しく取り締まっているので、決してマネしないでくださいね。茨城ダッシュはあくまでもテレビやゲームの中で楽しめるお遊び。ゲームで茨城ダッシュ体験を満喫しましょう!
+いかがでしょうか。茨城ならではの運転テクニックをユーモラスに解説することで、地域色を感じてもらいつつ安全運転を呼びかけたつもりです。

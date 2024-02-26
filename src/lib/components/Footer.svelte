@@ -3,13 +3,16 @@
         <div class="flex items-center justify-center h-10">
             <div class="flex items-center">
                 <div class="flex-shrink-0"></div>
-                <div class="ml-3 text-center">
-                    <a
-                        href="/privacy"
-                        class="text-white text-sm hover:text-gray-100"
+                <div class="ml-3 text-center text-white text-sm">
+                    <a href="/" class="hover:text-gray-200">ホーム</a>
+                    |
+                    <a href="/play" class="hover:text-gray-200">プレイ</a>
+                    |
+                    <a href="/credit" class="hover:text-gray-200">クレジット</a>
+                    |
+                    <a href="/privacy" class="hover:text-gray-200"
+                        >プライバシーポリシー</a
                     >
-                        プライバシーポリシー
-                    </a>
                     <p class="text-white text-sm">
                         © {new Date().getFullYear()} バーチャルな茨城で茨城ダッシュ！
                         All rights reserved.
