@@ -2,26 +2,32 @@
     class="flex flex-col items-center justify-center py-8 lg:py-16 bg-cover bg-center"
     style="background-image: url('/image/lp/sakura.jpg');"
 >
-    <div class="bg-gray-100 bg-opacity-50 w-full py-5">
-        <h1 class="text-5xl font-bold leading-tight text-center">
+    <div class="bg-gray-900 bg-opacity-70 w-full py-5">
+        <h1 class="text-5xl font-bold leading-tight text-center text-white">
             バーチャルな茨城で<br />茨城ダッシュ！
         </h1>
+        <div class="flex justify-center">
+            <img
+                src="/image/speeding/car.png"
+                alt="茨城ダッシュ"
+                class="w-1/3"
+            />
+        </div>
+        <div class="flex items-center justify-center mt-8">
+            <a
+                href="/game"
+                class="bg-green-700 text-white font-bold px-5 py-3 inline-block rounded hover:bg-green-800 shadow-lg"
+            >
+                プレイする
+            </a>
+        </div>
         <div class="flex flex-col items-center justify-center ml-10 gap-4">
-            <p class="mt-6 text-lg font-medium">
+            <p class="mt-6 text-lg font-medium text-white">
                 リアルでは味わえないそのスリルをバーチャルに再現した茨城ダッシュ！<br
                 />
                 さあ、あなたも茨城ダッシュを体験してみませんか？
             </p>
         </div>
-    </div>
-
-    <div class="flex items-center justify-center mt-8">
-        <a
-            href="/game"
-            class="bg-blue-700 text-white px-5 py-3 inline-block rounded hover:bg-blue-800 shadow-lg"
-        >
-            プレイする
-        </a>
     </div>
 </div>
 
@@ -29,9 +35,16 @@
     <h1 class="text-4xl font-bold leading-tight text-center">
         茨城ダッシュとは
     </h1>
+    <div class="flex justify-center my-5">
+        <img
+            src="/image/lp/intersection.webp"
+            alt="茨城ダッシュ"
+            class="w-1/3"
+        />
+    </div>
     <p class="mt-6 text-lg text-center text-gray-700">
         茨城県民にはお馴染み、交差点で信号が青に変わる瞬間に<br />
-        対向直進車の前を横切り、右折する運転技術です
+        対向車の前を横切り、右折する運転技術です
     </p>
 </div>
 
@@ -39,8 +52,11 @@
     <h1 class="text-3xl font-bold leading-tight text-center">
         茨城ダッシュは違法ですか？
     </h1>
+    <div class="flex justify-center">
+        <img src="/image/lp/stop.webp" alt="茨城ダッシュ" class="w-1/4" />
+    </div>
     <p class="mt-6 text-lg text-center text-gray-700">
-        はい、道路交通法第24条第1項第1号に違反する行為です。
+        はい、道路交通法３６条１項・３７条に違反する行為です
     </p>
 </div>
 
@@ -48,6 +64,9 @@
     <h1 class="text-3xl font-bold leading-tight text-center">
         茨城ダッシュのスリルを味わいたいのですが…
     </h1>
+    <div class="flex justify-center">
+        <img src="/image/lp/accident.webp" alt="茨城ダッシュ" class="w-1/3" />
+    </div>
     <p class="mt-6 text-lg text-center text-gray-700">
         <span class="font-bold">お任せください！</span
         >それを再現したのが茨城ダッシュ！です
@@ -78,7 +97,7 @@
     <div class="flex justify-center mt-10 font-bold">
         <a
             href="/game"
-            class="bg-blue-700 text-white px-5 py-3 inline-block rounded hover:bg-blue-800 shadow-lg"
+            class="bg-green-700 text-white font-bold px-5 py-3 inline-block rounded hover:bg-green-800 shadow-lg"
         >
             プレイする
         </a>
