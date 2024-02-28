@@ -1,7 +1,6 @@
 <script lang="ts">
     import "../app.css";
     import Footer from "$lib/components/Footer.svelte";
-    import GoogleAnalytics from "$lib/components/GoogleAnalytics.svelte";
     import MetaTags from "$lib/components/MetaTags.svelte";
     const title = "バーチャルな茨城で茨城ダッシュ！";
     const description =
@@ -10,8 +9,20 @@
 </script>
 
 <svelte:head>
-    <GoogleAnalytics />
     <MetaTags {title} {description} {thumbnail} />
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-Z3GHVQQSDH"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-Z3GHVQQSDH");
+    </script>
 </svelte:head>
 
 <div class="min-h-screen flex flex-col min-w-screen-xs">
