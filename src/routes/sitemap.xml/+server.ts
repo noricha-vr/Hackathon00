@@ -7,6 +7,7 @@ export async function GET({ fetch, setHeaders }) {
     const baseUrl = 'https://ibarakidash.kojin.works/';
 
     const urls = [
+        'game',
         'privacy',
     ];
 
