@@ -10,8 +10,8 @@
 </script>
 
 <svelte:head>
-    <MetaTags {title} {description} {thumbnail} />
     <GoogleAnalytics />
+    <MetaTags {title} {description} {thumbnail} />
 </svelte:head>
 
 <div class="min-h-screen flex flex-col min-w-screen-xs">
