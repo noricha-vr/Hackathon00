@@ -22,4 +22,5 @@
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={thumbnail} />
     <link rel="canonical" href={pageUrl} />
+    
 </svelte:head>

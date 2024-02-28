@@ -1,7 +1,12 @@
 <script lang="ts">
     import "../app.css";
     import Footer from "$lib/components/Footer.svelte";
+    import GoogleAnalytics from "$lib/components/GoogleAnalytics.svelte";
 </script>
+
+<svelte:head>
+    <GoogleAnalytics />
+</svelte:head>
 
 <div class="min-h-screen flex flex-col min-w-screen-xs">
     <nav class="bg-green-800">
