@@ -188,7 +188,7 @@
         <div class="p-5 bg-white rounded-lg shadow-lg mt-5 mb-10">
             <div class="text-left mb-3 p-3">
                 <div
-                    class="inline-block bg-white text-black font-bold text-lg border-4 border-gray-400 p-4 rounded-lg shadow-lg"
+                    class="inline-block bg-white text-black font-bold text-lg border-4 border-gray-400 p-4 rounded-lg shadow-xl transform transition duration-500 hover:scale-105"
                 >
                     <div class="mb-1">
                         最高スコア: <span class="text-green-600"
@@ -219,7 +219,7 @@
                 {#if !isGameOver}
                     {#if !isRunning}
                         <button
-                            class="bg-blue-500 text-white py-2 px-4 rounded"
+                            class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-xl"
                             on:click={startGame}>開始</button
                         >
                         {#if stage === 1}
@@ -237,7 +237,7 @@
                         {/if}
                     {:else}
                         <button
-                            class="bg-blue-500 text-white py-2 px-4 rounded"
+                            class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-xl"
                             on:click={go}>ダッシュ！</button
                         >
                         <img
@@ -266,7 +266,7 @@
                         {/if}
                     </div>
                     <button
-                        class="bg-blue-500 text-white py-2 px-4 rounded"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-xl"
                         on:click={startGame}>リトライ</button
                     >
                 {/if}
