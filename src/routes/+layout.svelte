@@ -5,7 +5,7 @@
     const title = "バーチャルな茨城で茨城ダッシュ！";
     const description =
         "茨城を舞台にしたバーチャルなゲーム体験を提供するこのサイトでは、プレイヤーはバーチャルな茨城で茨城ダッシュを楽しむことができます。青信号になったらすぐにダッシュ！スコアを稼ぎながらステージを進めよう！赤信号でダッシュボタンを押すとゲームオーバーになるので気をつけてね！最高スコアを目指して、茨城ダッシュのスリルを楽しもう！";
-    const thumbnail = "/image/thumbnail.png";
+    const thumbnail = "https://ibaraki-dash.kojin.works/image/thumbnail.png";
 </script>
 
 <svelte:head>
@@ -34,7 +34,9 @@
                 >
                     <a href="/">
                         <div class="flex flex-shrink-0 items-center">
-                            <div class="text-white ml-3 text-3xl font-bold">
+                            <div
+                                class="text-white ml-3 text-2xl md:text-3xl font-bold"
+                            >
                                 バーチャルな茨城で茨城ダッシュ！
                             </div>
                         </div>
