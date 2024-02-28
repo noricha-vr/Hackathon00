@@ -207,7 +207,9 @@
                     </div>
                 </div>
             </div>
-            <div class="text-4xl mb-3">第{stage}ステージ</div>
+            <div class="text-4xl mb-3 font-bold text-gray-800">
+                第<span class="text-blue-600">{stage}</span>ステージ
+            </div>
             <!-- <div>デッドライン: {deadline.toFixed(2)}</div> -->
 
             <div class="text-2xl">
