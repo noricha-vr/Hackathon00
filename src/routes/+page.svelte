@@ -32,9 +32,9 @@
 </div>
 
 <div class="bg-white p-10">
-    <h1 class="text-4xl font-bold leading-tight text-center">
+    <h2 class="text-4xl font-bold leading-tight text-center">
         茨城ダッシュとは
-    </h1>
+    </h2>
     <div class="flex justify-center my-5">
         <img
             src="/image/lp/intersection.webp"
@@ -49,9 +49,9 @@
 </div>
 
 <div class="bg-gray-100 p-10">
-    <h1 class="text-3xl font-bold leading-tight text-center">
+    <h2 class="text-3xl font-bold leading-tight text-center">
         茨城ダッシュは違法ですか？
-    </h1>
+    </h2>
     <div class="flex justify-center">
         <img src="/image/lp/stop.webp" alt="茨城ダッシュ" class="w-1/4" />
     </div>
@@ -61,9 +61,9 @@
 </div>
 
 <div class="bg-white p-10">
-    <h1 class="text-3xl font-bold leading-tight text-center">
+    <h2 class="text-3xl font-bold leading-tight text-center">
         茨城ダッシュのスリルを味わいたいのですが…
-    </h1>
+    </h2>
     <div class="flex justify-center">
         <img src="/image/lp/accident.webp" alt="茨城ダッシュ" class="w-1/3" />
     </div>
@@ -74,9 +74,9 @@
 </div>
 
 <div class="bg-gray-100 p-10">
-    <h1 class="text-3xl font-bold leading-tight text-center">
+    <h2 class="text-3xl font-bold leading-tight text-center">
         このゲームの遊び方
-    </h1>
+    </h2>
     <p class="mt-6 text-lg text-center text-gray-700">
         「開始」ボタンを押してゲームを開始<br />
         信号が青に変わる瞬間に「ダッシュ！」します
@@ -87,9 +87,9 @@
     </p>
 </div>
 <div class="bg-white p-10">
-    <h1 class="text-3xl font-bold leading-tight text-center">
+    <h2 class="text-3xl font-bold leading-tight text-center">
         今すぐ始めよう！
-    </h1>
+    </h2>
     <p class="mt-6 text-lg text-center text-gray-700">
         さあ、あなたも私たちのバーチャル茨城で<br />
         安全第一の「茨城ダッシュ」を体験してみませんか？
