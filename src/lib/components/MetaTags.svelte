@@ -6,7 +6,7 @@
     const pageUrl = $page.url.pathname;
 </script>
 
-<svelte:head>
+<head>
     <title>{title}</title>
     <meta lang="ja" />
     <meta name="description" content={description} />
@@ -22,5 +22,4 @@
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={thumbnail} />
     <link rel="canonical" href={pageUrl} />
-    
-</svelte:head>
+</head>
