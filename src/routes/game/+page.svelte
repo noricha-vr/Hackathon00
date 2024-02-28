@@ -188,15 +188,23 @@
         <div class="p-5 bg-white rounded-lg shadow-lg mt-5 mb-10">
             <div class="text-left mb-3 p-3">
                 <div
-                    class="inline-block border-2 border-gray-300 p-3 rounded-lg shadow-md"
+                    class="inline-block bg-white text-black font-bold text-lg border-4 border-gray-400 p-4 rounded-lg shadow-lg"
                 >
-                    <div>
-                        最高スコア: {Number(maxScore.toFixed(0)) * 10}
+                    <div class="mb-1">
+                        最高スコア: <span class="text-green-600"
+                            >{Number(maxScore.toFixed(0)) * 10}</span
+                        >
                     </div>
-                    <div class="">
-                        スコア: {Number(score.toFixed(0)) * 10}
+                    <div class="mb-1">
+                        スコア: <span class="text-blue-600"
+                            >{Number(score.toFixed(0)) * 10}</span
+                        >
                     </div>
-                    <div class="">タイマー: {timer.toFixed(2)}</div>
+                    <div class="mb-1">
+                        タイマー: <span class="text-red-600"
+                            >{timer.toFixed(2)}</span
+                        >
+                    </div>
                 </div>
             </div>
             <div class="text-4xl mb-3">第{stage}ステージ</div>
