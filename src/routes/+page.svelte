@@ -1,6 +1,6 @@
 <div
     class="flex flex-col items-center justify-center py-8 lg:py-16 bg-cover bg-center"
-    style="background-image: url('/image/lp/sakura.jpg');"
+    style="background-image: url('/image/lp/way.png');"
 >
     <div class="bg-gray-900 bg-opacity-70 w-full py-5">
         <h1 class="text-5xl font-bold leading-tight text-center text-white">
