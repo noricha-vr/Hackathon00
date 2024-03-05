@@ -6,7 +6,7 @@
                 <div class="ml-3 text-center text-white text-sm">
                     <a href="/" class="hover:text-gray-200">ホーム</a>
                     <span class="mx-2">|</span>
-                    <a href="/play" class="hover:text-gray-200">プレイ</a>
+                    <a href="/game" class="hover:text-gray-200">プレイ</a>
                     <span class="mx-2">|</span>
                     <a href="/credit" class="hover:text-gray-200">クレジット</a>
                     <span class="mx-2">|</span>
