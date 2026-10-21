@@ -1,5 +1,5 @@
 # ビルドステージ
-FROM node:20 AS build
+FROM node:22.23.4-bookworm AS build
 WORKDIR /app
 COPY . .
 RUN npm install
